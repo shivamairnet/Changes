@@ -1,0 +1,31 @@
+<main >
+    
+  <div class="w-[53rem] shadow-md bg-white flex flex-col items-center justify-start rounded-lg">
+   
+      <div class="w-full h-12 flex items-center justify-between bg-blue-900 text-white">
+      <p class="text-lg pl-4">{{getNumberOFNights() }} in {{getCityName()}}</p>
+    </div>
+  
+    <div class="w-full h-8 flex items-center justify-between bg-white">
+     <div class="w-3/5 ">
+          <p class="text-lg font-normal capitalize pl-5">
+              Stay &#64; {{getHotelName()}}
+          </p>
+     </div>
+     
+      <div class="w-2/5  flex items-center justify-center gap-8 mr-4  " >
+          <button class="text-primaryBlue px-4 py-[3px] rounded-lg font-medium text-sm  border " (click)="handleHotelCheckAvailability()" >Select Rooms</button>
+          <img [src]="getImageSrc()" alt="status" class="h-6 w-8" />
+      </div> 
+    </div>
+  
+    <ng-container *ngFor="let dateEvent of cityItineraryDetails.cityEvents">
+      <app-date-itinerary
+        class="w-full h-[5rem]"
+        [dateEventsObj]="dateEvent"
+      ></app-date-itinerary>
+    </ng-container>
+  </div>
+
+  <app-hotel-info-rooms *ngIf="showInfoRoomsDialog" [hotelId]="hotelId"  (close)="closeDialog()" > </app-hotel-info-rooms>
+</main>

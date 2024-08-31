@@ -1,0 +1,88 @@
+<main style="position: relative; overflow: visible" class="w-[53rem]">
+  <div class="flightCard w-full flex items-center justify-center gap-4" style="overflow: visible">
+    <div class="airline w-[8rem]">
+      <div class="airline-section1">
+        <div
+          class="airline-section1-logo"
+          *ngFor="let airline of flightDetails.airlines"
+        >
+          <!-- <img src="" alt="airline" /> -->
+          <p class="text-md font-medium">{{ airline.name }}</p>
+          <p class="text-xs">{{ airline.flightNumber }}</p>
+        </div>
+      </div>
+      <!-- <div class="airline-section2">
+                <h3>Emirates</h3>
+                <h4>Economy</h4>
+            </div> -->
+    </div>
+
+    <div class="timings w-[20rem] flex items-center justify-evenly" style="overflow: visible">
+      <div class="timings-city-stats">
+        <h3>{{ flightDetails.departTime }}</h3>
+        <h4>{{ flightDetails.departureCity }}</h4>
+        <h3>{{ flightDetails.departDate }}</h3>
+      </div>
+
+      <div class="timings-duration" style="position: relative">
+        <h4>{{ flightDetails.totalDuration }}</h4>
+
+        <button (mouseenter)="showTooltip = true" (mouseleave)="showTooltip = false" type="button" class="relative">
+          <img [src]="getStopsImageUrl()" alt="stops Bar" />
+        </button>
+
+        <!-- Tooltip -->
+        <ng-container  *ngIf="showTooltip && flightDetails.layovers.length>0">
+            <div id="tooltip-default" role="tooltip" class="w-[10rem] p-2 absolute bottom-full left-1/2 transform -translate-x-1/2 z-10 text-xs font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-100">
+                <div class="flex flex-col items-center justify-center gap-2">
+                    <ng-container *ngFor="let layover of flightDetails.layovers" >
+                        <div class="flex flex-col items-center justify-center text-xs font-light gap-1"  >
+                            <p>Plane change</p>
+                            <p>{{layover.airport}}</p>
+                            <p>{{layover.description}}</p>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+
+        <h4>{{ getNumberOfFlights() }}</h4>
+      </div>
+
+      <div class="timings-city-stats">
+        <h3>{{ flightDetails.arrivalTime }}</h3>
+        <h4>{{ flightDetails.arrivalCity }}</h4>
+        <h3>{{ flightDetails.arrivalDate }}</h3>
+      </div>
+    </div>
+
+    <div class="w-[7rem] ml-10 h-full flex items-center justify-center gap-10">
+      <div class="w-1/2 h-full flex justify-center items-center">
+        <img src="../../../assets/icons/pencil.png" alt="edit" class="w-4 h-4 cursor-pointer" (click)="toggleTooltip()"/>
+      </div>
+      <div class="w-1/2 h-full flex jusitfy-center items-center">
+        <img [src]="getImageSrc()" alt="status" class="h-6 w-8" />
+      </div>
+    </div>
+  </div>
+
+  <!-- tooltip -->
+  <div [ngClass]="{'tooltip-content': true, 'hidden': !isTooltipVisible}">
+    <div class="flex">
+    <button class="cta">
+      <img src="assets\icons\Iconslatestpackage\logoRM.png" alt="Icon" class="icon">
+      Replace
+    </button>
+    <button class="cta">
+      <img src="assets\icons\pencil.png" alt="Icon" class="icon">
+      Edit
+    </button>
+    <button class="cta">
+      <img src="assets\icons\icons8-bin-50.png" alt="Icon" class="icon">
+      <!-- <img src="remove-icon.png" alt="Icon" class="icon"> -->
+      Remove
+    </button>
+  </div>
+  </div>
+  <!-- <app-flight-details *ngIf="isflightDetails" (click)="toTriggerAlternateFlightsetDialogBox()"  ></app-flight-details> -->
+</main>

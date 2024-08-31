@@ -1,0 +1,40 @@
+
+<div class="zoom-in h-[89%] w-[12rem] rounded-md flex items-center justify-center ml-1">
+    <!-- <div class="w-full flex items-center justify-center">
+        
+        <div class="w-[2rem] h-10 flex items-center justify-center bg-red-100 rounded-2xl">
+            <img src="assets/icons/boat (1).png" alt="icon" height="20px" width="20px">
+        </div>
+        <div class="w-[4rem] h-1 flex items-center justify-center">
+            <img src="assets\icons\Line 2.png" alt="icon">
+        </div>
+    </div> -->
+    <div class="w-full justify-center py-2 rounded-md flex shadow-md h-full items-center relative">
+          <!-- Icons Container -->          
+          <div class="absolute top-2 right-6 flex items-start space-x-4">
+            <!-- Conditional Rendering of Light Icon -->
+            <img 
+                [src]="isAvailable ? 'assets/icons/greenLight.png' : 'assets/icons/redLight.png'" 
+                alt="status-icon" 
+                class="w-2.5 h-2.5"
+            >
+            <img src="path/to/your/info-icon.png" alt="i" class="w-2 h-2">
+        </div>
+        
+        <div class="w-[2rem] h-10 justify-center">
+            <img src="assets/icons/boat (1).png" alt="icon" height="20px" width="20px">
+        </div>
+        <div class="flex flex-col ml-2">
+    <div class="text-xs underline ml-2 flex flex-col">
+        <span>{{commuteDetails.startTime}}-{{commuteDetails.endTime}}</span>
+    </div>
+    <div class="w-[10rem]">
+        <div class="text-xs w-full px-2 mt-2">
+            <span class="block" style="margin-top:2px;">{{commuteDetails.truncatedTitle}}</span>
+        
+        </div>
+    </div>
+</div>
+</div>
+</div>
+

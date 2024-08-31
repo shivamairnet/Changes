@@ -1,0 +1,116 @@
+
+<div class="w-[53rem] mb-6 p-4 bg-white rounded-lg">
+    <h3 class="text-xl font-semibold pb-2 text-left">Hotels</h3>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+      <div class="flex justify-between items-center border-b border-gray-200 p-4 bg-gray-100">
+          <div>
+              <h3 class="text-lg font-bold">{{getHotelName()}}</h3>
+              <div class="flex items-center text-gray-500 text-sm mt-1">
+                  <span>Thu, Sept 03, 2024</span>
+                  <span class="mx-2">⟶</span>
+                  <span>Sat, Sept 05, 2024</span>
+              </div>
+          </div>
+          <div class="flex items-center space-x-4">
+              <button class="text-gray-500 border border-black rounded px-3 py-1">i</button>
+              <button class="text-gray-500 border border-black rounded px-4 py-1">Change</button>
+          </div>
+      </div>
+  
+      <div class="flex p-4 relative">
+       
+        <img
+        *ngIf="!isHotelAvailable"
+        src="assets/icons/Iconslatestpackage/not-available.png"
+        alt="Not Available"
+        class="absolute top-2 right-2 w-24 h-8 rounded-lg mr-0"
+      >
+      
+      <img
+        *ngIf="isHotelAvailable"
+        src="assets/icons/Iconslatestpackage/available.png"
+        alt="Available"
+        class="absolute top-2 right-2 w-24 h-8 rounded-lg mr-0"
+      >
+          <img src="hotel-image.jpg" alt="Hotel Image" class="w-48 h-auto rounded-lg mr-6">
+          <div class="flex-1">
+              <h4 class="text-xl font-semibold mb-2">Deluxe Double Room</h4>
+              <div class="flex items-center text-sm mb-2">
+                <span class="flex items-center">
+                <img src="assets\icons\Iconslatestpackage\non-refundable.png" alt="Icon" class="w-4 h-4 mr-2">
+                  
+                  <span class="mr-4">Non-Refundable</span>
+                </span>
+                  <span class="flex items-center">
+                    
+                    <img src="assets\icons\Iconslatestpackage\group.png" alt="Icon" class="w-4 h-4 ml-2">
+                    <span class="mr-4">Accommodate 2 Adults</span>
+                    
+                </span>
+                  
+              </div>
+              <div class="flex items-center text-sm mb-2">
+                  <span class="mr-4 bg-gray-100 rounded-md p-2">4★ Hotel</span>
+                  <span class="mr-4 bg-gray-100 rounded-md p-2">7.2/10</span>
+                  <span>Bookings.com</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-sm mb-4">
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg></span>
+
+                    <span>Non-smoking rooms</span>
+                </div>
+
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg></span>
+
+                    <span>Free WiFi</span>
+                </div>
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg></span>
+
+                    <span>Bed And Breakfast</span>
+                </div>
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg></span>
+
+                    <span>Air Conditioner</span>
+                </div>
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </span>
+
+                    <span>Terrace</span>
+                </div>
+                <div class="flex">
+                    <span><svg class="w-5 h-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </span>
+
+                    <span>Bar</span>
+                </div>
+              
+              </div>
+             
+              
+          </div>
+      </div>
+      <div class="flex p-2">
+        <p class="text-gray-500 text-xs mb-2">
+            FYI: Hotels may charge a caution deposit on your credit card. It will be refunded within 10-15 days if there is no property damage.
+        </p>
+        <a href="#" class="text-blue-500 text-sm ml-8">+2 Alerts</a>
+      </div>
+  </div>
+</div>

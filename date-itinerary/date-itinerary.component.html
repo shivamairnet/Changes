@@ -1,0 +1,48 @@
+<!-- row -->
+<div class="h-full relative w-full flex items-center border-b border-t">
+  <!-- date -->
+  <div class="w-24 h-full flex items-center justify-center bg-white border-r-2 mr-3">
+    <p class="font-normal text-md">{{ date }}</p>
+  </div>
+
+  <!-- Events -->
+  <div class="h-full w-[45.5rem] flex-1 flex items-center relative z-10">
+    <div class= "h-full w-full overflow-x-auto overflow-y-hidden  flex items-start gap-4 scrollbar scrollbar-thin scrollbar-thumb-[#32326870] scrollbar-track-gray-100 scrollbar-thumb-rounded-full ">
+      <ng-container *ngFor="let event of dateEventsObj.eventsOnDate" >
+        <ng-container *ngIf="isCommuteEvent(event)">
+          <app-commute [event]="event" class="h-full overflow-visible"></app-commute>
+        </ng-container>
+        <ng-container *ngIf="isLoungeEvent(event)">
+          <app-lounge [event]="event" class="h-full overflow-visible"></app-lounge>
+        </ng-container>
+        <ng-container *ngIf="isCheckInEvent(event)">
+          <app-security-check-in [event]="event" class="h-full overflow-visible"></app-security-check-in>
+        </ng-container>
+        <ng-container *ngIf="isLeisureEvent(event)">
+          <app-leisure [event]="event" class="h-full overflow-visible"></app-leisure>
+        </ng-container>
+        <ng-container *ngIf="isSightEvent(event)">
+          <app-sight [event]="event" class="h-full overflow-visible"></app-sight>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- tester code -->
+ <!-- Itinerary Row -->
+<!-- <div class="flex w-full border-b"> -->
+<!-- Date Column -->
+<!-- <div class="w-24 flex items-center justify-center bg-gray-200 border-r py-2"> -->
+  <!-- <p class="text-md">{{ date }}</p> -->
+<!-- </div> -->
+
+<!-- Events Column -->
+<!-- <div class="flex-1 grid grid-cols-12 gap-1"> -->
+  <!-- <ng-container *ngFor="let event of dateEventsObj.eventsOnDate"> -->
+    <!-- <div [ngClass]="getEventGridClass(event)" class="p-2 text-center bg-green-100 rounded-md"> -->
+      <!-- {{ event.title }} -->
+    <!-- </div> -->
+  <!-- </ng-container> -->
+<!-- </div> -->
+<!-- </div> -->

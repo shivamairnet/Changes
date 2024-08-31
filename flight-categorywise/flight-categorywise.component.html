@@ -1,0 +1,96 @@
+
+<div class="w-[53rem] mb-6 p-4 bg-white rounded-lg mt-4 shadow-md">
+    <h3 class="text-xl font-semibold pb-2 text-left">Flights</h3>
+    <section class="p-1">
+      <div class="max-w-4xl mx-auto" *ngFor="let flight of flights">
+        <!-- Flight Card -->
+        <div class="bg-white rounded-lg shadow-lg mb-6 p-4">
+          <!-- Main Route -->
+          <div class="flex justify-between items-center border-b pb-1 mb-3 bg-gray-100 pl-2 pt-1">
+            <div>
+              <div class="text-lg font-bold">{{ flight.route }}</div>
+              <div class="text-gray-500 text-sm">{{ flight.date }}</div>
+            </div>
+          </div>
+  
+         
+  
+          <!-- Multiple Segments -->
+          <div class="flex flex-col space-y-4 rounded-md">
+            <div class="flex flex-col border border-gray-100 rounded-md mt-4 p-3" *ngFor="let segment of flight.segments">
+              <!-- Segment Route and Date -->
+              <div class="flex justify-between items-center border-b pb-1 mb-3 bg-gray-50 pl-2 pt-1">
+                
+                <div>
+                  <div class="text-lg font-semibold">{{ segment.segmentRoute }}</div>
+                  <div class="text-gray-500 text-sm">{{ segment.segmentDate }}</div>
+                </div>
+              </div>
+  
+              <div class="flex items-center space-x-4 relative">
+                <div class="flex items-center space-x-1">
+                  <span><img src="assets/icons/Iconslatestpackage/refundable.png" alt="Refundable" class="w-5 h-5"></span>
+                  <span class="text-xs">{{ flight.refundable ? 'Refundable' : 'Non-Refundable' }}</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                  <span><img src="assets/icons/Iconslatestpackage/coach-class.png" alt="Class" class="w-5 h-5"></span>
+                  <span class="text-xs">{{ flight.class }}</span>
+                </div>
+                <img *ngIf="!segment.available" src="assets/icons/Iconslatestpackage/not available.png" alt="Not Available" class="absolute top-1 right-2 w-24 h-8 rounded-lg mr-0">
+                <img *ngIf="segment.available" src="assets/icons/Iconslatestpackage/available.png" alt="Available" class="absolute top-1 right-2 w-24 h-8 rounded-lg mr-0">
+              </div>
+  
+              <!-- Segment Details -->
+              <div class="flex items-center space-x-12 p-2">
+                 <!-- Airline Info -->
+                  <div class="flex">
+          <div class="flex-col">
+            <img [src]="segment.logo" alt="{{ segment.name }}" class="w-12">
+          </div>
+
+                <div class="flex-col">  
+              <div class="font-bold">{{ segment.name }}</div>
+              <div class="text-gray-500 text-sm">{{ segment.flightNumber }}</div>
+            </div>
+          </div>
+          
+
+                <div class="flex-col">
+                  <div class="text-lg font-bold">{{ segment.departureTime }}</div>
+                  <div class="text-sm">{{ segment.departureCity }}</div>
+                </div>
+                <div class="flex-col">
+                  <div class="flex justify-center text-sm text-gray-500">{{ segment.duration }}</div>
+                  <div class="flex items-center justify-center">
+                    <div class="w-16 h-px bg-gray-400"></div>
+                    <div class="w-2 h-2 bg-gray-500 rounded-full mx-2"></div>
+                    <div class="w-16 h-px bg-gray-400"></div>
+                  </div>
+                  <div class="flex text-sm text-blue-400 justify-center">{{ segment.stops }}</div>
+                </div>
+                <div class="flex-col">
+                  <div class="text-lg font-bold">{{ segment.arrivalTime }} <span class="text-red-500 text-sm" *ngIf="segment.arrivalTime.includes('+1 Day')">+1 Day</span></div>
+                  <div class="text-sm">{{ segment.arrivalCity }}</div>
+                </div>
+              </div>
+  
+              <!-- Baggage Info -->
+              <hr class="my-4 border-gray-300">
+              <div class="flex text-gray-600 text-sm">
+                <div class="flex space-x-2">
+                  <span>📜</span>
+                  <div class="notification text-xs">
+                    {{ flight.baggageInfo }}
+                  </div>
+                  <div class="alert ml-5">
+                    <a href="#" class="text-blue-500 text-sm">{{ flight.alerts }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

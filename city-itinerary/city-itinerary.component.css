@@ -1,0 +1,103 @@
+/* Ensure tooltips are visible and correctly positioned */
+.tooltip {
+    position: absolute;
+    bottom: 100%; /* Position above the parent */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.group:hover .tooltip {
+    opacity: 1;
+}
+
+.bg-customPurple {
+    background-color: #323268;
+  }
+  
+  .text-customPurple {
+    color: #323268;
+  }
+  
+  .bg-customOrange {
+    background-color: #e2472b;
+  }
+  
+  .text-customOrange {
+    color: #e2472b;
+  }
+
+  .border-customOrange {
+    border-color: #e2472b;
+  }
+
+  .border-customPurple {
+    border-color: #323268;
+  }
+  .hidden {
+    display: none;
+}
+
+  /* tooltip for editing */
+/* Image container */
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip content */
+.tooltip-content {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  top: 94%; /* Position below the image */
+  left: 65%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1000;
+}
+
+/* CTA buttons */
+.cta {
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
+  padding: 3px 10px;
+  background-color: #444;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.cta:hover {
+  background-color: #555;
+}
+/* Icons */
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+/* Hidden class to control tooltip visibility */
+.hidden {
+  display: none;
+}
+
+
+
+        
+

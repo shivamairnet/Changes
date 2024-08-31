@@ -1,0 +1,311 @@
+<main class="">
+
+    <!-- loader -->
+    <app-loader *ngIf="isLoading && !isPackageCreationFailed "></app-loader>
+
+    <!-- package -->
+    <ng-container *ngIf="!isLoading && !isPackageCreationFailed " >
+        <div class="w-screen pl-20 flex flex-col">
+            <!-- name and category toggle -->
+            <div class="w-full h-32 ">
+
+              <!-- package name -->
+              <div class="w-full h-1/2 p-2  flex items-center pl-8">
+                <h1 class="text-2xl font-medium">
+                  10 nights to Cape Town, Mossel Bay, Milan
+                </h1>
+              </div>
+
+              <!-- category toggle -->
+              <div
+                class="flex w-full  h-1/2 flex items-center justify-between font-normal"
+              >
+  <!-- Tabs -->
+  <div class="tabs flex justify-around mb-4">
+    <button
+      class="px-4 py-2 bg-white text-customPurple font-medium rounded relative tab-button"
+      [ngClass]="{'no-underline': activeTab === 'trips'}"
+      (click)="scrollToSection('trips')">TRIPS
+    </button>
+    <button
+      class="px-4 py-2 bg-white text-customPurple font-medium rounded relative tab-button"
+      [ngClass]="{'underline': activeTab === 'tab1'}"
+      (click)="scrollToSection('tab1')">INCLUSIONS/EXCLUSIONS
+    </button>
+    <button
+      class="px-4 py-2 bg-white font-medium rounded relative tab-button"
+      [ngClass]="{'text-red-500': flightCount,
+      'text-customPurple': !flightCount,
+      'underline': activeTab === 'tab2'}"
+      (click)="scrollToSection('tab2')">FLIGHTS
+      <span *ngIf="flightCount" class="absolute -top-2 -right-0.95rem bg-red-500 text-white rounded-full px-1 py-0.5 text-xs font-bold">{{ flightCount }}</span>
+
+    </button>
+    <button
+      class="px-4 py-2 bg-white font-medium rounded relative tab-button"
+      [ngClass]="{'text-red-500': hotelCount,
+      'text-customPurple': !hotelCount,
+      'underline': activeTab === 'tab3'}"
+      (click)="scrollToSection('tab3')">HOTELS
+      <span *ngIf="hotelCount" class="absolute -top-2 -right-0.95rem bg-red-500 text-white rounded-full px-1 py-0.5 text-xs font-bold">{{ hotelCount }}</span>
+
+    </button>
+    <button
+      class="px-4 py-2 bg-white font-medium rounded relative tab-button"
+      [ngClass]="{'text-red-500': sightseeingCount,
+      'text-customPurple': !sightseeingCount,
+      'underline': activeTab === 'tab4'}"
+      (click)="scrollToSection('tab4')">SIGHTSEEINGS
+      <span *ngIf="sightseeingCount" class="absolute -top-2 -right-0.95rem bg-red-500 text-white rounded-full px-1 py-0.5 text-xs font-bold">{{ sightseeingCount }}</span>
+    </button>
+    <button
+      class="px-4 py-2 bg-white font-medium rounded relative tab-button"
+      [ngClass]="{'text-red-500': transitCount,
+      'text-customPurple': !transitCount,
+      'underline': activeTab === 'tab5'}"
+      (click)="scrollToSection('tab5')">TRANSITS
+      <span *ngIf="transitCount" class="absolute -top-2 -right-0.95rem bg-red-500 text-white rounded-full px-1 py-0.5 text-xs font-bold">{{ transitCount }}</span>
+    </button>
+  </div>
+
+              <!-- <div class="flex items-center justify-center mr-20 " >
+                <button class="border border-2 py-2 px-3 rounded-xl text-primaryBlue font-medium bg-green-400" (click)="handlePackageAvailabiity()">Check Availability</button>
+
+                <button class="border border-2 py-2 px-3 rounded-xl text-primaryBlue font-medium bg-amber-400"(click)="handlePackageCheckoutNavigation()">Phase 2</button>
+
+                
+              </div> -->
+              
+
+              
+              </div>
+              
+            </div>
+        
+            <div class="flex">
+            <div class="w-full mt-8 flex flex-col items-start gap-5">
+              
+                <ng-container *ngFor="let event of eventsArr">
+                    <ng-container *ngIf="event.eventType === 'interCity'">
+                        <div *ngIf="event.commuteType === 'flightOnly'" class="h-24 w-[52rem]">
+                            <app-flight-card [eventUid]="event.uid"></app-flight-card>
+                        </div>
+                        <!-- train card -->
+                        <div *ngIf="event.commuteType === 'transitOnly'" class="w-[52rem]">
+                            <app-transit-card [eventUid]="event.uid"></app-transit-card>
+                        </div>
+                    </ng-container>
+        
+                    <!-- schedule -->
+                    <ng-container *ngIf="event.eventType === 'intraCity'">
+                        <app-city-itinerary [eventUid]="event.uid"></app-city-itinerary>
+                    </ng-container>
+              </ng-container>
+            </div>
+            <!-- <main class="h-screen w-screen flex items-start justify-end pt-10 pr-8 " > -->
+              <!-- payment.component.html -->
+
+           <div class="">
+           <section class="h-[25rem] w-[18rem] bg-primaryBlue rounded-lg border border-2 border-gray-600 shadow shadow-xl mt-20 mr-5">
+               
+               <div class="h-[13rem]  w-full p-4 rounded-lg shadow-md overflow-y-auto">
+                   <div class="h-full w-full flex flex-col text-sm font-medium text-white">
+                       <!-- Total Published Cost -->
+                       <div class="flex h-1/5 items-center justify-between px-4">
+                           <label for="total-package-cost">Total Published Cost</label>
+                           <p>₹{{ paymentDetails.totalPublishedCost }}</p>
+                       </div>
+                       
+                       <!-- Incentive Earned -->
+                       <div class="flex h-1/5 items-center justify-between px-4">
+                           <label for="incentive-earned">Incentive Earned</label>
+                           <p class="text-green-400">₹{{ paymentDetails.incentiveEarned }}</p>
+                       </div>
+                   
+                       <!-- TDS -->
+                       <div class="flex h-1/5 items-center justify-between px-4">
+                           <label for="tds">TDS</label>
+                           <p>₹{{ paymentDetails.tds }}</p>
+                       </div>
+                   
+                       <!-- Platform Cost -->
+                       <div class="flex h-1/5 items-center justify-between px-4">
+                           <label for="platform-cost">Platform Cost</label>
+                           <p>₹{{ paymentDetails.platformCost }}</p>
+                       </div>
+                   
+                       <!-- Payment Gateway Fee -->
+                       <div class="flex h-1/5 items-center justify-between px-4">
+                           <label for="payment-gateway-fee">Payment Gateway Fee</label>
+                           <p>₹{{ paymentDetails.paymentGatewayFee }}</p>
+                       </div>
+                   </div>
+               </div>
+               <hr class="h-[3px] text-gray-100">
+               
+               <div class="h-[7rem]  w-full flex flex-col items-center justify-center">
+                   <div class="w-full flex items-center justify-start ml-12">
+                       <p class="text-md font-medium text-white">Total Trip Cost</p>
+                   </div>
+                   <div class="w-full flex flex-col items-end justify-center mr-32">
+                       <p class="text-2xl font-medium text-white">Rs.{{ paymentDetails.totalTripCost }}</p>
+                       <p class="text-gray-400 text-xs">Incl. of all taxes</p>
+                   </div>
+               </div>
+               <hr class="h-[3px] text-gray-100">
+               
+               <div class="h-[calc(100%-13rem-7rem-6px)]  w-full flex items-center justify-center p-6">
+                   <div class="flex space-x-4">
+                       <button  class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-200">
+                           Save
+                       </button>
+                       <button class="bg-green-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition duration-200">
+                           Proceed
+                       </button>
+                   </div>
+               </div>
+           </section>
+           <div class="flex items-center justify-center mr-3 mt-5" >
+            <button class="py-2 px-3 text-white font-medium bg-red-500 mr-3 rounded-md" (click)="handlePackageAvailabiity()">Check Availability</button>
+
+            <button class="py-2 px-3 text-white font-medium bg-red-500 rounded-md">Check Out</button>
+
+            
+          </div>
+
+          <!-- route of travel -->
+          <div class="w-[18rem] bg-white shadow-lg rounded-lg p-2 mt-4">
+            <div class="bg-blue-900 pl-2 pr-2 pt-2 pb-1 text-white">
+            <h2 class="text-lg font-semibold mb-5">Route of Travel</h2>
+            </div>
+
+            <ul class="space-y-4">
+              <li class="flex items-center">
+                <div class="flex-shrink-0 mt-4">
+                  <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-700">IGI Airport, New Delhi</p>
+                </div>
+              </li>
+              <li class="flex items-center">
+                <div class="flex-shrink-0">
+                  <div class="h-3 w-3 rounded-full bg-gray-300"></div>
+                  <div class="h-full w-1 bg-gray-300 mx-auto"></div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-700">Milan Malpensa Airport, Milan</p>
+                </div>
+              </li>
+              <li class="flex items-center">
+                <div class="flex-shrink-0">
+                  <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-700">Lido Di Jesolo</p>
+                </div>
+              </li>
+              <li class="flex items-center">
+                <div class="flex-shrink-0">
+                  <div class="h-3 w-3 rounded-full bg-gray-300"></div>
+                  <div class="h-full w-1 bg-gray-300 mx-auto"></div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-700">Leonardo da Vinci–Fiumicino Airport, Rome</p>
+                </div>
+              </li>
+              <li class="flex items-center">
+                <div class="flex-shrink-0">
+                  <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-700">IGI Airport, New Delhi</p>
+                </div>
+              </li>
+            </ul>
+            <div class="mt-6">
+              <button class="ml-12 text-sm w-20 h-10 border shadow-md text-blue-600 hover:underline">Edit Route</button>
+              <button class="ml-6 text-sm w-20 h-10 border shadow-md text-blue-600 hover:underline">Add City</button>
+            </div>
+          </div>
+        
+          </div>
+           </div>
+
+    <!-- Sections for each tab -->
+    <div id="sections"> 
+          <div id="tab1">
+             
+    <!-- Inclusions/Exclusions Section -->
+      <div class="w-[53rem] mb-6 p-4 mt-7 bg-white rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold text-left pb-3 mb-3 pt-3">Inclusions/Exclusions</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border border-gray-100">
+           
+            
+            <div>
+                <h4 class="font-semibold mb-2 text-center">Inclusions</h4>
+                <ul class="pl-5 text-gray-700 mb-4">
+                    <li *ngFor="let inclusion of inclusions" class="flex items-center mb-2">
+                        <svg class="w-5 h-5 text-red-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {{ inclusion }}
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-2 text-center">Exclusions</h4>
+                <ul class="pl-5 text-gray-700 mb-4">
+                    <li *ngFor="let exclusion of exclusions" class="flex items-center mb-2">
+                        <svg class="w-5 h-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        {{ exclusion }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+          </div>
+      <div id="tab2">
+        <app-flight-categorywise></app-flight-categorywise>
+      </div>
+  
+      <div id="tab3">
+        <app-hotels-categorywise></app-hotels-categorywise>
+      </div>
+  
+      <div id="tab4">
+        <app-sight-categorywise></app-sight-categorywise>
+      </div>
+  
+      <div id="tab5">
+        <app-transit-categorywise></app-transit-categorywise>
+        <!-- <app-transitcategorywise></app-transitcategorywise> -->
+         <!-- <app-transitcategorywise></app-transitcategorywise> -->
+          <app-test></app-test>
+      </div>
+    </div>
+  
+
+          </div>
+    </ng-container>
+  <!-- </div> -->
+    
+    <!--package creation failed -->
+    <ng-container *ngIf=" isLoading && isPackageCreationFailed && !isPackageAvailabilityFailed  " >
+        <app-package-failed></app-package-failed>
+    </ng-container>
+
+    <!--package availability failed -->
+    <ng-container *ngIf=" isLoading && isPackageAvailabilityFailed " >
+       <app-availability-failed></app-availability-failed>
+    </ng-container>
+
+
+
+    
+      
+      
+</main>
