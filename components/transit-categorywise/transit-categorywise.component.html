@@ -1,0 +1,93 @@
+
+<div class="w-[53rem] h-[53rem] mb-6 p-4 bg-white rounded-lg">
+    <h3 class="text-xl font-semibold pb-2 text-left">Transits</h3>
+
+    {{name}}
+    <section class="p-1">
+      <div class="max-w-4xl mx-auto" *ngFor="let transit of transits">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+          <div
+            class="flex justify-between items-center border-b border-gray-200 p-4 bg-gray-100"
+          >
+            <div>
+              <h3 class="text-lg font-bold">
+                {{ transit.startLocation }} to {{ transit.endLocation }}
+              </h3>
+              <div class="flex items-center text-gray-500 text-sm mt-1">
+                <span>{{ transit.startDate }}</span>
+                <span class="mx-2">⟶</span>
+                <span>{{ transit.endDate }}</span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-4">
+              <button class="text-gray-600 border border-black rounded px-3 py-1">
+                i
+              </button>
+              <button class="text-gray-600 border border-black rounded px-4 py-1">
+                Change
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex p-4 relative">
+          <!-- <img [src]="transit.availabilityImage" alt="available" class="absolute top-2 right-2 w-24 h-8 rounded-lg mr-0"> -->
+          <!-- <img [src]="transit.transitImage" alt="Transit Image" class="w-48 h-auto rounded-lg mr-6"> -->
+          <div class="flex-1">
+            <div class="grid grid-cols-2 gap-2 text-sm mb-4">
+              <div class="col1" style="font-size: sm">
+                <div class="flex">
+                  <span>
+                    <!-- <img src="assets/icons/Iconslatestpackage/seat.png" alt="Seat Icon" class="w-4 h-4 mr-2"> -->
+                  </span>
+                  <span style="margin-left: 3px">{{
+                    transit.privateTransfer
+                  }}</span>
+                </div>
+                <div class="flex">
+                  <span>
+                    <!-- <img src="assets/icons/Iconslatestpackage/group.png" alt="Group Icon" class="w-4 h-4 mr-2"> -->
+                  </span>
+                  <span style="margin-left: 3px">{{ transit.passengers }}</span>
+                </div>
+                <div class="flex">
+                  <span>
+                    <!-- <img src="assets/icons/Iconslatestpackage/luggage.png" alt="Luggage Icon" class="w-4 h-4 mr-2"> -->
+                  </span>
+                  <span style="margin-left: 3px">{{ transit.luggage }}</span>
+                </div>
+                <div class="flex">
+                  <span>
+                    <!-- <svg class="w-5 h-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                     </svg> -->
+                  </span>
+                  <span>{{ transit.pickupDescription }}</span>
+                </div>
+                <div class="flex">
+                  <span>
+                    <!-- <svg class="w-5 h-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                     </svg> -->
+                  </span>
+                  <span>{{ transit.dropoffDescription }}</span>
+                </div>
+              </div>
+              <div class="vehicletypes" style="font-size: sm">
+                <span style="font-size: 16px; text-decoration: underline"
+                  >Vehicle Types</span
+                >
+                <div class="flex bg-gray-100 w-24 mt-2">
+                  <!-- <span><img src="assets/icons/Iconslatestpackage/sedan-car-model.png" alt="Sedan Icon" class="w-6 h-6 mr-2"></span> -->
+                  <span style="margin-left: 4px">{{ transit.vehicleType }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+   
+  </div>
+  
